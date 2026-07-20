@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EmployeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ServiceController;
 
 $employes = null;
 
@@ -62,3 +63,5 @@ Route::post('/contact', function() {
 Route::get('/bienvenue', [EmployeController::class, 'bienvenue'])->name('bienvenue');
 Route::get('/liste', [EmployeController::class, 'liste'])->name('liste');
 Route::get('/fiche/{id}', [EmployeController::class, 'fiche'])->name('fiche');
+Route::get('/services', [ServiceController::class, 'index'])->name('index');
+Route::get('/services/{id}', [ServiceController::class, 'show'])->name('show');
