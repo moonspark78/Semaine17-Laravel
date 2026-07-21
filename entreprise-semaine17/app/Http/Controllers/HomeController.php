@@ -14,6 +14,7 @@ class HomeController extends Controller
 
     public function contact()
     {
+        return view('contact');
 
     }
 
@@ -26,12 +27,13 @@ class HomeController extends Controller
     $admin = false;
     $age = 16;
     $tentatives = 4;
-    // $employes = [
-    //     array('id_employes' => '350','prenom' => 'Jean-pierre','nom' => 'Laborde','sexe' => 'm','service' => 'direction','date_embauche' => '2010-12-09','salaire' => '5000'),
-    //     array('id_employes' => '388','prenom' => 'Clement','nom' => 'Gallet','sexe' => 'm','service' => 'commercial','date_embauche' => '2010-12-15','salaire' => '2300'),
-    //     array('id_employes' => '415','prenom' => 'Thomas','nom' => 'Winter','sexe' => 'm','service' => 'commercial','date_embauche' => '2011-05-03','salaire' => '3550'),
-    // ];
-    $employes = array();
+    $employes = [
+       array('id_employes' => '350','prenom' => 'Jean-pierre','nom' => 'Laborde','sexe' => 'm','service' => 'direction','date_embauche' => '2010-12-09','salaire' => '5000'),
+       array('id_employes' => '388','prenom' => 'Clement','nom' => 'Gallet','sexe' => 'm','service' => 'commercial','date_embauche' => '2010-12-15','salaire' => '2300'),
+       array('id_employes' => '415','prenom' => 'Thomas','nom' => 'Winter','sexe' => 'm','service' => 'commercial','date_embauche' => '2011-05-03','salaire' => '3550'),
+       array('id_employes' => '111',  "prenom" => "Mathieu", "nom" => "Franscico", "sexe" => "m", "service" => "informatique",'date_embauche' => '1999-12-15', "salaire" => '25000')
+     ];
+    //$employes = array();
 
 
         return view('pages.bladetest', compact("titre", "employes", "entreprise", "employe", "admin", "age", "tentatives"));
