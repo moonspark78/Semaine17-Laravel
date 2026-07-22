@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         // Ici on défini les seeder qu'on doit lancer par défaut 
             $this->call([
                 EmployeSeeder::class,
+                ServiceSeeder::class,
                 // ProductSeeder::class,
                 // RoleSeeder::class,
                 // EmployeSeeder::class,
