@@ -30,4 +30,36 @@ class ServiceController extends Controller
             "service" => $service
         ]);
     }
+
+    public function direction()
+{
+    $service = Service::where("nom", "Direction")->first();
+
+
+    return view('services.direction', [
+        "service" => $service
+    ]);
+}
+
+
+public function responsables()
+{
+    $services = Service::all();
+
+
+    return view('services.responsables', [
+        "services" => $services
+    ]);
+}
+
+
+public function count()
+{
+    $nombre = Service::count();
+
+
+    return view('services.count', [
+        "nombre" => $nombre
+    ]);
+}
 }

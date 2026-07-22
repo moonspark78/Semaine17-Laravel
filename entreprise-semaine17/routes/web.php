@@ -60,13 +60,26 @@ Route::post('/contact', function() {
     return "Salut, le form a bien été envoyé!";
 });
 
-// A partir de là les routes avec controller 
+
 Route::get('/bienvenue', [EmployeController::class, 'bienvenue'])->name('bienvenue');
 Route::get('/liste', [EmployeController::class, 'liste'])->name('liste');
 Route::get('/fiche/{id}', [EmployeController::class, 'fiche'])->name('fiche');
 
-Route::get('/services', [ServiceController::class, "index"])->name("services.index");
-Route::get('/services/{id}', [ServiceController::class, "show"])->name("services.show");
+Route::get('/services', [ServiceController::class, "index"])
+    ->name("services.index");
+
+Route::get('/services/direction', [ServiceController::class, "direction"])
+    ->name("services.direction");
+
+Route::get('/services/responsables', [ServiceController::class, "responsables"])
+    ->name("services.responsables");
+
+Route::get('/services/count', [ServiceController::class, "count"])
+    ->name("services.count");
+
+Route::get('/services/{id}', [ServiceController::class, "show"])
+    ->name("services.show");
+
 
 Route::get('/employes', [EmployeController::class, "index"])->name("employes.index");
 Route::get('/employes/{id}', [EmployeController::class, "show"])->name("employes.show");
@@ -74,3 +87,6 @@ Route::get('/employes/{id}', [EmployeController::class, "show"])->name("employes
 Route::get('/', [HomeController::class, "home"])->name("home");
 Route::get('/contact', [HomeController::class, "contact"])->name("contact");
 Route::get('/bladetest', [HomeController::class, "bladetest"])->name("bladetest");
+
+Route::get('/requetes', [EmployeController::class, "requetes"])
+    ->name("employes.requetes");
