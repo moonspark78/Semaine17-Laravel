@@ -9,26 +9,55 @@
 
 <h1>Liste des services</h1>
 
+
+<a href="{{ route('services.create') }}">
+    Ajouter un service
+</a>
+
+
 <ul>
 
 @forelse($services as $service)
 
     <li>
-        {{ $service->nom }} 
+
+        {{ $service->nom }}
         - Responsable : {{ $service->responsable }}
 
-        <a href="{{ route('services.show', ['id' => $service->id]) }}">
-            Voir le service
+
+        <a href="{{ route('services.show', $service) }}">
+            Voir
         </a>
+
+
+        <a href="{{ route('services.edit', $service) }}">
+            Modifier
+        </a>
+
+
+        <form method="POST" action="{{ route('services.destroy', $service) }}">
+
+            @csrf
+            @method('DELETE')
+
+            <button type="submit">
+                Supprimer
+            </button>
+
+        </form>
+
+
     </li>
 
 
 @empty
 
-    <p>Aucun service pour l'instant</p>
+    <p>Aucun service</p>
 
 @endforelse
 
+
 </ul>
+
 
 @endsection
