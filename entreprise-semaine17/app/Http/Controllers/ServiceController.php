@@ -7,59 +7,87 @@ use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-
     public function index()
     {
-        
-        $services = Service::all(); // tout les services ici
+        $services = Service::all();
 
         return view('services.index', [
             "services" => $services
         ]);
     }
 
-
-    public function show($id)
+    public function create()
     {
-        
-        $service = Service::find($id);
+        return view('services.create');
+    }
 
+    public function store(Request $request)
+    {
+        Service::create([
+            "nom" => $request->nom,
+            "responsable" => $request->responsable,
+            "telephone" => $request->telephone
+        ]);
 
+        return redirect()->route('services.index');
+    }
+
+    public function show(Service $service)
+    {
         return view('services.show', [
-            "id" => $id,
             "service" => $service
         ]);
     }
 
+    public function edit(Service $service)
+    {
+        return view('services.edit', [
+            "service" => $service
+        ]);
+    }
+
+    public function update(Request $request, Service $service)
+    {
+        $service->update([
+            "nom" => $request->nom,
+            "responsable" => $request->responsable,
+            "telephone" => $request->telephone
+        ]);
+
+        return redirect()->route('services.index');
+    }
+
+    public function destroy(Service $service)
+    {
+        $service->delete();
+
+        return redirect()->route('services.index');
+    }
+
     public function direction()
-{
-    $service = Service::where("nom", "Direction")->first();
+    {
+        $service = Service::where("nom", "Direction")->first();
 
+        return view('services.direction', [
+            "service" => $service
+        ]);
+    }
 
-    return view('services.direction', [
-        "service" => $service
-    ]);
-}
+    public function responsables()
+    {
+        $services = Service::all();
 
+        return view('services.responsables', [
+            "services" => $services
+        ]);
+    }
 
-public function responsables()
-{
-    $services = Service::all();
+    public function count()
+    {
+        $nombre = Service::count();
 
-
-    return view('services.responsables', [
-        "services" => $services
-    ]);
-}
-
-
-public function count()
-{
-    $nombre = Service::count();
-
-
-    return view('services.count', [
-        "nombre" => $nombre
-    ]);
-}
+        return view('services.count', [
+            "nombre" => $nombre
+        ]);
+    }
 }
